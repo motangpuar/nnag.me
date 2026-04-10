@@ -1,0 +1,85 @@
+baseURL = "https://nnag.duckdns.org/"
+languageCode = "en-us"
+title = "Yosafat Marselino"
+[pagination]
+  pagerSize = 10
+
+[params]
+  env = "production"
+  author = "Yosafat Marselino"
+  description = "Cloud and O-RAN infrastructure engineer"
+
+  skills = [
+    "Kubernetes / OpenShift",
+    "StarlingX",
+    "O-RAN / O2 interface",
+    "5G RAN",
+    "Jenkins / ArgoCD",
+    "Python",
+    "Go",
+    "SR-IOV / DPDK",
+    "Real-time Linux",
+    "BGP / FRRouting",
+    "Redfish",
+    "PTP",
+  ]
+
+  # Profile mode — maps to the hero section in the mockup
+  [params.profileMode]
+    enabled = true
+    title = "Nino Agus"
+    subtitle = "Cloud and O-RAN infrastructure engineer. Five years with Linux, three with Kubernetes. Contributor to the O-RAN Software Community."
+    imageUrl = "img/avatar.jpg"   # put your photo at static/img/avatar.jpg
+    imageTitle = "Nino Agus"
+
+    [[params.profileMode.buttons]]
+      name = "Projects"
+      url = "/projects"
+
+    [[params.profileMode.buttons]]
+      name = "Writing"
+      url = "/posts"
+
+    [[params.profileMode.buttons]]
+      name = "CV"
+      url = "/cv.pdf"             # drop cv.pdf into static/
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/motangpuar"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://linkedin.com/in/YOUR_HANDLE"   # fill in
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:YOUR@EMAIL.com"                  # fill in
+
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Writing"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+  [[menu.main]]
+    name = "CV"
+    url = "/cv.pdf"
+    weight = 4
+
+# Point build output directly at Caddy's public dir
+[build]
+  writeStats = true
+
+publishDir = "/var/www/portfolio/public"
+

@@ -1,0 +1,134 @@
+{{- define "main" }}
+
+{{ $oran  := where (where .Site.RegularPages "Section" "projects") ".Params.category" "oran" }}
+{{ $tools := where (where .Site.RegularPages "Section" "projects") ".Params.category" "tooling" }}
+
+<div class="wrap">
+
+  {{/* ── Hero ── */}}
+  <section class="hero">
+    <div class="hero-top">
+      <img class="avatar" src="/img/avatar.jpg" alt="{{ .Site.Params.author }}">
+      <div class="hero-text">
+        <h1>{{ .Site.Params.author }}</h1>
+        <p class="hero-sub">{{ .Site.Params.description }}</p>
+      </div>
+    </div>
+    <div class="tag-row">
+      <span class="tag">O-RAN Software Community</span>
+      <span class="tag">TIP Community Lab</span>
+      <span class="tag">NTUST M.Sc. Electronics &amp; CE</span>
+    </div>
+    <div class="btn-row">
+      {{ range .Site.Params.socialIcons }}
+      <a class="btn" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+      {{ end }}
+      <a class="btn" href="/cv.pdf">cv</a>
+    </div>
+  </section>
+
+  {{/* ── Stats ── */}}
+  <div class="stats">
+    <div class="stat"><span class="stat-n">5+</span><span class="stat-l">Years Linux</span></div>
+    <div class="stat"><span class="stat-n">3</span><span class="stat-l">Years Kubernetes</span></div>
+    <div class="stat"><span class="stat-n">O2</span><span class="stat-l">IMS/DMS contrib</span></div>
+    <div class="stat"><span class="stat-n">OSC</span><span class="stat-l">PTI-O2 merged</span></div>
+  </div>
+
+  <hr>
+
+  {{/* ── O-RAN Projects ── */}}
+  <section class="proj-section">
+    <div class="section-meta">
+      <span class="eyebrow">Featured projects</span>
+      <h2>O-RAN infrastructure</h2>
+      <p>Original implementations of O2 interface components. These ran in a real O-Cloud lab against live StarlingX and OKD clusters.</p>
+    </div>
+    <div class="grid-2">
+      {{ range $oran }}
+      <a class="card {{ if .Params.featured }}card-featured{{ end }}" href="{{ .Permalink }}">
+        <div class="card-top">
+          <span class="card-title">{{ .Title }}</span>
+          {{ with .Params.badge }}<span class="badge">{{ . }}</span>{{ end }}
+        </div>
+        <p class="card-desc">{{ .Params.summary }}</p>
+        <div class="tag-row">
+          {{ range .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <hr>
+
+  {{/* ── Tooling ── */}}
+  <section class="proj-section">
+    <div class="section-meta">
+      <span class="eyebrow">Infrastructure tooling</span>
+      <h2>Portable tools</h2>
+      <p>Standalone tools built to solve specific lab problems. Each works outside the original lab environment.</p>
+    </div>
+    <div class="grid-3">
+      {{ range $tools }}
+      <a class="card" href="{{ .Permalink }}">
+        <span class="card-title">{{ .Title }}</span>
+        <p class="card-desc">{{ .Params.summary }}</p>
+        <div class="tag-row">
+          {{ range .Params.tags }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </section>
+
+  <hr>
+
+  {{/* ── Experience ── */}}
+  <section class="proj-section">
+    <div class="section-meta">
+      <span class="eyebrow">Experience</span>
+      <h2>Background</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="dot"></div>
+        <div>
+          <div class="exp-title">OSC Asia Pacific Lab — Research Engineer</div>
+          <div class="exp-sub">O-RAN Software Community · Taipei · 2022–2024<br>Built and maintained O-Cloud lab. Contributed NFO and FOCOM modules to PTI-O2 upstream via Gerrit review.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="dot"></div>
+        <div>
+          <div class="exp-title">TIP Community Lab — System Integrator</div>
+          <div class="exp-sub">Telecom Infra Project · Bandung · 2019–2022<br>Deployed OpenRAN, OpenWifi, and OpenTransport stacks with live operators.</div>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="dot"></div>
+        <div>
+          <div class="exp-title">M.Sc. Electronics and Computer Engineering — NTUST</div>
+          <div class="exp-sub">Thesis: Automated CI/CD testing framework for O-RAN via O2 infrastructure management on O-Cloud.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  {{/* ── Skills ── */}}
+  <section class="proj-section">
+    <div class="section-meta">
+      <span class="eyebrow">Core skills</span>
+    </div>
+    <div class="tag-row">
+      {{ range .Site.Params.skills }}
+      <span class="tag">{{ . }}</span>
+      {{ end }}
+    </div>
+  </section>
+
+</div>
+
+{{- end }}

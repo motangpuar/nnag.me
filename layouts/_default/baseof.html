@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/" class="nav-name">Home</a>
+      <div class="nav-links">
+        <a href="/projects/">Projects</a>
+        <a href="/posts/">Writing</a>
+        <a href="/about/">About</a>
+        <a href="/cv.pdf">CV</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    {{- block "main" . }}{{- end }}
+  </main>
+  <footer>
+    <div class="footer-inner">
+      <span>{{ .Site.Title }}</span>
+      <div class="footer-links">
+        {{ range .Site.Params.socialIcons }}
+        <a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

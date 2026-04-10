@@ -1,0 +1,14 @@
+{{- define "main" }}
+<div class="post-wrap">
+  <h1>{{ .Title }}</h1>
+  <div class="post-meta">
+    {{ with .Params.tags }}
+      {{ range . }}<span class="tag">{{ . }}</span> {{ end }}
+    {{ end }}
+    {{ with .Params.externalUrl }}
+    &nbsp;·&nbsp;<a href="{{ . }}" target="_blank" rel="noopener" style="color:var(--muted);">view on github →</a>
+    {{ end }}
+  </div>
+  <div class="post-content">{{ .Content }}</div>
+</div>
+{{- end }}
