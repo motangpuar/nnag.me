@@ -25,11 +25,14 @@ OKD. The O-RUs are LiteON and Pegatron units using 7.2x fronthaul split.
 
 ## The Problem
 
+![O-Cloud](/img/HPE-ORAN.png "O-RAN Deployment {{< cite id="oran-arch" >}}")
+
 Manual 5G integration testing does not scale. A single configuration change (CPU
 isolation, hugepage allocation, fronthaul bandwidth target) requires redeployment and
 retesting by hand. On COTS hardware with diverse server profiles, every node needs
 individual tuning. There was no mechanism to systematically vary these parameters, deploy
 across multiple O-Cloud sites, and collect results without human involvement at each step.
+
 
 The O-RAN O2 interface defines a standard way for the SMO to manage O-Cloud infrastructure
 and deploy network functions. This work uses that interface as the automation boundary.
