@@ -4,6 +4,7 @@ date: 2024-01-02
 tags: ["O-RAN", "Python", "FOCOM", "O2 IMS"]
 summary: "MVP FOCOM implementation. Handles O-Cloud infrastructure orchestration via the O2ims provisioning interface as a standalone Python Flask service."
 category: "oran"
+parentProject: "smo-o2"
 externalUrl: "https://github.com/motangpuar/smo-o2-focom"
 showToc: false
 ---

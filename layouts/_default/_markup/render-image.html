@@ -1,0 +1,15 @@
+{{- $width := "" -}}
+{{- $caption := "" -}}
+{{- $title := .Title -}}
+{{- if hasPrefix $title "width=" -}}
+  {{- $width = strings.TrimPrefix "width=" $title -}}
+{{- else -}}
+  {{- $caption = $title -}}
+{{- end -}}
+<figure class="img-figure">
+  <img src="{{ .Destination | safeURL }}"
+       alt="{{ .Text }}"
+       loading="lazy"
+       {{- with $width }} style="max-width:{{ . }}px"{{ end }}>
+  {{- with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

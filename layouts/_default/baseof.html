@@ -10,7 +10,7 @@
 <body>
   <header>
     <nav>
-      <a href="/" class="nav-name">Home</a>
+      <a href="/" class="nav-name">YM</a>
       <div class="nav-links">
         <a href="/projects/">Projects</a>
         <a href="/posts/">Writing</a>
@@ -32,5 +32,15 @@
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var zoom = mediumZoom('.post-content figure.img-figure img', {
+        margin: 24,
+        background: 'var(--bg)',
+        scrollOffset: 0
+      });
+    });
+  </script>
 </body>
 </html>

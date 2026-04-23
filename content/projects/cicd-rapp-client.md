@@ -4,6 +4,7 @@ date: 2024-01-06
 tags: ["Python", "CI/CD", "O-RAN", "rApp", "O2"]
 summary: "Consumer rApp for automated gNB testing via the O2 O-Cloud interface. Triggers test runs on real radio equipment as part of a CI/CD pipeline."
 category: "oran"
+parentProject: "smo-o2"
 externalUrl: "https://github.com/motangpuar/cicd-rapp-client"
 showToc: false
 ---

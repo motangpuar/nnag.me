@@ -83,3 +83,9 @@ title = "Yosafat Marselino"
 
 publishDir = "/var/www/portfolio/public"
 
+
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+
+[markup.goldmark.parser.attribute]
+  block = true

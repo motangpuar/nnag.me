@@ -29,3 +29,6 @@ init:
 	@echo [PASS] hugo found
 	mkdir -p $(PUBLIC_DIR)
 	@echo [DONE] Run make build to deploy
+
+local-test:
+	podman run --rm -it   -v $(CURDIR):/src:z   -p 1313:1313   hugomods/hugo:exts-0.146.0   server --bind 0.0.0.0 --port 1313 --buildDrafts
