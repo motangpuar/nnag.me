@@ -335,7 +335,8 @@ footer { border-top: 1px solid var(--border); }
   text-align: center;
 }
 .post-content figcaption {
-  font-size: .75rem;
+  font-style: italic;
+  font-size: .95rem;
   color: var(--muted);
   margin-top: 6px;
 }
@@ -408,3 +409,69 @@ footer { border-top: 1px solid var(--border); }
   line-height: 1.6;
   margin-bottom: 10px;
 }
+
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .85em;
+  margin: 1.5rem 0;
+}
+.post-content th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border);
+  color: var(--text);
+  white-space: nowrap;
+}
+.post-content td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  vertical-align: top;
+}
+.post-content tr:last-child td {
+  border-bottom: none;
+}
+.post-content tr:hover td {
+  background: var(--surface);
+}
+
+/* ── References ── */
+.ref-list {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.ref-heading {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.ref-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: .6rem;
+  font-size: .82rem;
+  line-height: 1.6;
+}
+.ref-num {
+  color: var(--muted);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+.ref-text a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ref-text a:hover { color: var(--text); }
+.cite-link {
+  font-size: .8em;
+  color: var(--muted);
+  text-decoration: none;
+  vertical-align: super;
+}
+.cite-link:hover { color: var(--text); }

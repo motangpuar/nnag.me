@@ -1,0 +1,10 @@
+<div class="ref-item" id="ref-{{ .Get "id" }}" data-ref-id="{{ .Get "id" }}">
+  <span class="ref-num"></span>
+  <span class="ref-text">
+    {{ with .Get "url" }}
+    <a href="{{ . }}" target="_blank" rel="noopener">{{ $.Get "text" }}</a>
+    {{ else }}
+    {{ $.Get "text" }}
+    {{ end }}
+  </span>
+</div>

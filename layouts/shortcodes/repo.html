@@ -1,0 +1,9 @@
+<a class="comp-card" href="{{ .Get "url" }}" target="_blank" rel="noopener" style="margin: 10px; display:block;">
+  <span class="comp-title">{{ .Get "name" }}</span>
+  <p class="comp-desc">{{ .Get "desc" }}</p>
+  {{ with .Get "tags" }}
+  <div class="tag-row">
+    {{ range (split . ",") }}<span class="tag">{{ strings.TrimSpace . }}</span>{{ end }}
+  </div>
+  {{ end }}
+</a>
