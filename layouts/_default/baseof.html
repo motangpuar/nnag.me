@@ -42,21 +42,21 @@
       });
     });
   </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const refs = document.querySelectorAll('.ref-item');
+    const map = {};
+    refs.forEach((el, i) => {
+      const id = el.dataset.refId;
+      const num = i + 1;
+      map[id] = num;
+      el.querySelector('.ref-num').textContent = '[' + num + ']';
+    });
+    document.querySelectorAll('.cite-link').forEach(el => {
+      const id = el.dataset.ref;
+      if (map[id]) el.textContent = '[' + map[id] + ']';
+    });
+  });
+  </script>
 </body>
 </html>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const refs = document.querySelectorAll('.ref-item');
-  const map = {};
-  refs.forEach((el, i) => {
-    const id = el.dataset.refId;
-    const num = i + 1;
-    map[id] = num;
-    el.querySelector('.ref-num').textContent = '[' + num + ']';
-  });
-  document.querySelectorAll('.cite-link').forEach(el => {
-    const id = el.dataset.ref;
-    if (map[id]) el.textContent = '[' + map[id] + ']';
-  });
-});
-</script>

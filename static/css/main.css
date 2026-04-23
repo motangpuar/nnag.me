@@ -14,6 +14,12 @@
 
 @media (max-width: 768px) {
   :root { --max: 90%; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { gap: 20px; }
+  nav { padding: 0 20px; }
+  .wrap { padding: 32px 20px 70px; }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -89,8 +95,8 @@ hr {
 }
 .hero-text { flex: 1; }
 .avatar {
-  width: 80px;
-  height: 80px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--border);
@@ -382,7 +388,7 @@ footer { border-top: 1px solid var(--border); }
   margin-bottom: 16px;
 }
 
-/* component repo cards under featured project */
+/* ── Component repo cards ── */
 .comp-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -410,6 +416,7 @@ footer { border-top: 1px solid var(--border); }
   margin-bottom: 10px;
 }
 
+/* ── Table ── */
 .post-content table {
   width: 100%;
   border-collapse: collapse;
@@ -430,12 +437,8 @@ footer { border-top: 1px solid var(--border); }
   color: var(--muted);
   vertical-align: top;
 }
-.post-content tr:last-child td {
-  border-bottom: none;
-}
-.post-content tr:hover td {
-  background: var(--surface);
-}
+.post-content tr:last-child td { border-bottom: none; }
+.post-content tr:hover td { background: var(--surface); }
 
 /* ── References ── */
 .ref-list {
@@ -454,13 +457,14 @@ footer { border-top: 1px solid var(--border); }
   display: flex;
   gap: 10px;
   margin-bottom: .6rem;
-  font-size: .82rem;
+  font-size: .98rem;
   line-height: 1.6;
 }
 .ref-num {
   color: var(--muted);
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+  min-width: 28px;
 }
 .ref-text a {
   color: var(--muted);
@@ -475,3 +479,27 @@ footer { border-top: 1px solid var(--border); }
   vertical-align: super;
 }
 .cite-link:hover { color: var(--text); }
+
+/* ── Image zoom ── */
+.post-content figure.img-figure {
+  display: block;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+.post-content figure.img-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: inline-block;
+  cursor: zoom-in;
+  transition: opacity .15s;
+}
+.post-content figure.img-figure img:hover { opacity: .85; }
+.post-content figure.img-figure figcaption {
+  font-size: .95rem;
+  color: var(--muted);
+  margin-top: 6px;
+  font-style: italic;
+  text-align: center;
+}

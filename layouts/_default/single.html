@@ -8,6 +8,8 @@
     {{ with .Params.externalUrl }}
     &nbsp;·&nbsp;<a href="{{ . }}" target="_blank" rel="noopener" style="color:var(--muted);">view on github →</a>
     {{ end }}
+    {{ with .Params.stack }}
+    {{ end }}
   </div>
   <div class="post-content">{{ .Content }}</div>
 </div>

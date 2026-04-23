@@ -8,7 +8,8 @@ featured: true
 featuredOrder: 1
 eyebrow: "M.Sc. thesis — NTUST 2024"
 externalUrl: "https://github.com/motangpuar/smo-o2"
-showToc: false
+showToc: true
+stack: "Python, Flask, Robot Framework, Kubernetes, StarlingX, Tox"
 ---
 
 The O2 interface sits between the SMO and the O-Cloud. This project extends the upstream
@@ -62,5 +63,4 @@ The O2 interface {{< cite id="oran-arch" >}} sits between the SMO and the O-Clou
 {{< ref id="hpe-oran" text="HPE. Open RAN Architecture Overview." url="https://hpe.com" >}}
 {{< /refs >}}
 
-**Stack:** Python, Flask, Robot Framework, Kubernetes, StarlingX, Tox
 
