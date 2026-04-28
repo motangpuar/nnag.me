@@ -1,0 +1,14 @@
+{{ $url := .Get "url" }}
+{{ $id := .Get "id" }}
+{{ if $url }}
+  {{ $id = replaceRE ".*(?:youtu.be/|v=|embed/)([^&?]+).*" "$1" $url }}
+{{ end }}
+<div class="video-wrap">
+  <iframe
+    src="https://www.youtube.com/embed/{{ $id }}"
+    title="{{ .Get "title" | default "Video" }}"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>

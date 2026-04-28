@@ -11,6 +11,9 @@ externalUrl: "https://github.com/motangpuar/smo-o2"
 showToc: true
 ---
 
+{{< youtube url="https://youtu.be/4lgzRcGhxA0" title="rApp CI/CD prototype — Pegatron O-RU bandwidth scaling test" >}}
+
+
 End-to-end 5G testing is hard. Deploying a gNB on real hardware, connecting it to a live
 O-RU, running traffic, and collecting results requires coordinating multiple systems that
 were never designed to talk to each other automatically. Before this work, every change to
