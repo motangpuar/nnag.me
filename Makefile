@@ -32,3 +32,7 @@ init:
 
 local-test:
 	podman run --rm -it   -v $(CURDIR):/src:z   -p 1313:1313   hugomods/hugo:exts-0.146.0   server --bind 0.0.0.0 --port 1313 --buildDrafts
+
+serve: build
+	podman-compose down
+	podman-compose up -d

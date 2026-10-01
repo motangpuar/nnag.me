@@ -1,16 +1,16 @@
-version: '3.8'
+version: "3"
 
 services:
-  hugo-nginx:
-    image: nginx:alpine
-    container_name: hugo-site
+  web:
+    image: caddy:alpine
+    container_name: hugo-web
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:8081:80"
+    network_mode: host          # so cloudflared on the host can reach 127.0.0.1:1313
+    working_dir: /srv
     volumes:
-      - ./public:/usr/share/nginx/html:ro
-      - ./helper/nginx-default.conf:/etc/nginx/conf.d/default.conf:ro
-    # Optional: custom nginx config if needed (e.g., for SPA routing)
-    # configs:
-    #   - source: nginx_conf
-    #     target: /etc/nginx/conf.d/default.conf
+      - ./public:/srv:ro
+    command: >
+      caddy file-server
+        --listen 0.0.0.0:1313
+        --root /srv
+        --browse
