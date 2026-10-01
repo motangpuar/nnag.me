@@ -1,4 +1,4 @@
-baseURL = "https://nnag.duckdns.org/"
+baseURL = "https://ymarselino.dpdns.org/"
 languageCode = "en-us"
 title = "Yosafat Marselino"
 [pagination]
@@ -29,7 +29,7 @@ title = "Yosafat Marselino"
     enabled = true
     title = "Nino Agus"
     subtitle = "Cloud and O-RAN infrastructure engineer. Five years with Linux, three with Kubernetes. Contributor to the O-RAN Software Community."
-    imageUrl = "img/avatar.jpg"   # put your photo at static/img/avatar.jpg
+    imageUrl = "img/placeholder.png"   # put your photo at static/img/avatar.jpg
     imageTitle = "Nino Agus"
 
     [[params.profileMode.buttons]]
@@ -50,11 +50,11 @@ title = "Yosafat Marselino"
 
   [[params.socialIcons]]
     name = "linkedin"
-    url = "https://linkedin.com/in/YOUR_HANDLE"   # fill in
+    url = "https://www.linkedin.com/in/yosafat-marselino-739235a7"   # fill in
 
   [[params.socialIcons]]
     name = "email"
-    url = "mailto:YOUR@EMAIL.com"                  # fill in
+    url = "mailto:ninoagus@protonmail.com"                  # fill in
 
 [menu]
   [[menu.main]]
