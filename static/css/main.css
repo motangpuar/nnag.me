@@ -98,8 +98,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── Nav ── */
+/* ── Nav ── */
 header {
   border-bottom: 1px solid var(--rule);
+  position: relative;
+  z-index: 20;
 }
 nav {
   max-width: var(--col-wide);
@@ -116,7 +119,12 @@ nav {
   letter-spacing: -.01em;
   line-height: var(--lh-ui);
 }
-.nav-links { display: flex; gap: 30px; }
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
 .nav-links a {
   font-family: var(--sans);
   font-size: 0.78rem;
@@ -128,6 +136,80 @@ nav {
   transition: color .15s;
 }
 .nav-links a:hover { color: var(--muted); }
+
+/* Hamburger button — hidden on desktop */
+.nav-toggle {
+  display: none;
+  width: 44px;              /* touch target */
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+  transition: transform .22s ease, opacity .18s ease;
+}
+
+/* Hamburger → X when open */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile: collapse to a dropdown ── */
+@media (max-width: 640px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 var(--gutter);
+    /* closed state — animated */
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .25s ease, opacity .18s ease;
+  }
+  .nav-links.is-open {
+    max-height: 320px;      /* enough for 3–5 items */
+    opacity: 1;
+    padding-bottom: 0.75rem;
+  }
+  .nav-links a {
+    padding: 14px 0;        /* generous touch target */
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+    width: 100%;
+  }
+  .nav-links a:last-child { border-bottom: none; }
+}
+
+/* Optional: lock scroll when menu is open (only on very small screens) */
+@media (max-width: 640px) {
+  body.nav-open { overflow: hidden; }
+}
 
 /* ── Main wrap ── */
 main { min-height: 80vh; }

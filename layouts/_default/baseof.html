@@ -14,7 +14,17 @@
   <header>
     <nav>
       <a href="/" class="nav-name">YM</a>
-      <div class="nav-links">
+  
+      <button class="nav-toggle"
+              aria-label="Toggle menu"
+              aria-expanded="false"
+              aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+  
+      <div class="nav-links" id="nav-links">
         <a href="/projects/">Projects</a>
         <a href="/posts/">Writing</a>
         <a href="/about/">About</a>
@@ -59,6 +69,46 @@
       if (map[id]) el.textContent = '[' + map[id] + ']';
     });
   });
+  </script>
+  <script>
+  (() => {
+    const toggle = document.querySelector('.nav-toggle');
+    const links  = document.getElementById('nav-links');
+    const body   = document.body;
+    if (!toggle || !links) return;
+  
+    const setOpen = (open) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      links.classList.toggle('is-open', open);
+      body.classList.toggle('nav-open', open);
+    };
+  
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+  
+    // Close when a link is tapped (page will navigate anyway)
+    links.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') setOpen(false);
+    });
+  
+    // Close on outside tap
+    document.addEventListener('click', (e) => {
+      if (toggle.getAttribute('aria-expanded') !== 'true') return;
+      if (!links.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+  
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  
+    // Reset when resizing back to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 640) setOpen(false);
+    });
+  })();
   </script>
 </body>
 </html>
