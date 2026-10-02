@@ -7,7 +7,7 @@ title = "Yosafat Marselino"
 [params]
   env = "production"
   author = "Yosafat Marselino"
-  description = "Cloud and O-RAN infrastructure engineer"
+  description = "Cloud Infrastructure Engineer | Kubernetes, OpenShift, CI/CD, Go/Python | O-RAN SC contributor"
 
   skills = [
     "Kubernetes / OpenShift",

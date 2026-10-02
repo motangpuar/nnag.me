@@ -1,16 +1,46 @@
 {{- define "main" }}
-<div class="post-wrap">
+<article class="post-wrap">
+
+  {{/* ── Kicker / eyebrow ── */}}
+  {{ with .Params.kicker }}
+    <p class="eyebrow">{{ . }}</p>
+  {{ else }}
+    {{ with .Section }}
+      <p class="eyebrow">{{ . | humanize }}</p>
+    {{ end }}
+  {{ end }}
+
+  {{/* ── Headline ── */}}
   <h1>{{ .Title }}</h1>
+
+  {{/* ── Deck / summary (optional) ── */}}
+  {{ with .Description }}
+    <p class="post-deck">{{ . }}</p>
+  {{ else }}
+    {{ with .Params.summary }}
+      <p class="post-deck">{{ . }}</p>
+    {{ end }}
+  {{ end }}
+
+  {{/* ── Byline ── */}}
+  <p class="post-byline">By Yosafat Marselino</p>
+
+  {{/* ── Meta: date · tags · external link ── */}}
   <div class="post-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">
+      {{ .Date.Format "January 2, 2006" }}
+    </time>
     {{ with .Params.tags }}
-      {{ range . }}<span class="tag">{{ . }}</span> {{ end }}
+      &nbsp;·&nbsp;
+      {{ range $i, $t := . }}{{ if $i }}, {{ end }}<span class="tag">{{ $t }}</span>{{ end }}
     {{ end }}
     {{ with .Params.externalUrl }}
-    &nbsp;·&nbsp;<a href="{{ . }}" target="_blank" rel="noopener" style="color:var(--muted);">view on github →</a>
-    {{ end }}
-    {{ with .Params.stack }}
+      &nbsp;·&nbsp;<a href="{{ . }}" target="_blank" rel="noopener">view on github →</a>
     {{ end }}
   </div>
+
+  {{/* ── Body ── */}}
   <div class="post-content">{{ .Content }}</div>
-</div>
+
+</article>
 {{- end }}
