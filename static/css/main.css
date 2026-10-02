@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400..800;1,400..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { overflow-x: hidden; }
 
 /* ── Fluid root: 18px phones → 26px at 2K → capped 28px ── */
 html {
@@ -13,8 +15,8 @@ html {
   --bg:          #fff;
   --surface:     #f6f6f6;
   --border:      #e0e0e0;
-  --rule:        #e2e2e2;   /* fine hairlines */
-  --rule-strong: #1c1c1c;   /* editorial breaks */
+  --rule:        #e2e2e2;
+  --rule-strong: #1c1c1c;
   --text:        #1c1c1c;
   --muted:       #717171;
   --radius:      2px;
@@ -45,9 +47,10 @@ html {
   --lh-prose:    1.65;
   --lh-loose-sm: 1.75;
 
-  /* ── Layout measures (NYT-style) ── */
+  /* ── Layout measures ── */
   --measure-prose: 62ch;
   --measure-wide:  72ch;
+  --measure-media: 48rem;   /* ≈ 1.55× prose — NYT wide breakout ratio */
   --gutter:        clamp(1.25rem, 6vw, 4rem);
 
   --col-prose: min(calc(100% - 2 * var(--gutter)), var(--measure-prose));
@@ -126,7 +129,7 @@ nav {
 }
 .nav-links a:hover { color: var(--muted); }
 
-/* ── Main wrap (wide measure) ── */
+/* ── Main wrap ── */
 main { min-height: 80vh; }
 .wrap {
   max-width: var(--col-wide);
@@ -159,9 +162,9 @@ hr {
   flex-shrink: 0;
 }
 .hero h1 {
-  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-size: clamp(2rem, 4vw, 2.6rem);   /* was clamp(2.2rem, 4.5vw, 3rem) */
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   line-height: var(--lh-display);
   margin-bottom: 10px;
   text-wrap: balance;
@@ -176,14 +179,37 @@ hr {
 /* ── Tags / buttons ── */
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .tag {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--sans);
   font-size: var(--fs-xs);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
   color: var(--muted);
+  background: transparent;
   line-height: var(--lh-loose-sm);
+  text-decoration: none;
+  transition:
+    color .15s ease,
+    border-color .15s ease,
+    background-color .15s ease;
 }
+
+a.tag { cursor: pointer; }
+
+a.tag:hover {
+  color: var(--bg);
+  background: var(--text);
+  border-color: var(--text);
+}
+span.tag:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: var(--surface);
+  cursor: default;
+}
+
 .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .icon-btn {
   display: inline-flex;
@@ -237,17 +263,16 @@ hr {
 /* ── Sections ── */
 .proj-section { margin-bottom: 8px; }
 .section-meta { margin-bottom: 16px; }
-/* Kicker */
 .eyebrow {
-  font-family: var(--sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text);
-  display: block;
-  margin-bottom: 12px;
-  line-height: 1.4;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    display: block;
+    margin-bottom: 8px;
+    line-height: var(--lh-loose-sm);
 }
 .section-meta h2 {
   font-size: var(--fs-lg);
@@ -400,37 +425,32 @@ footer { border-top: 1px solid var(--rule); }
 }
 .post-tags { display: flex; flex-wrap: wrap; gap: 5px; }
 
-/* ── Single post (narrow measure) ── */
+/* ── Single post header ── */
 .post-wrap {
   max-width: var(--col-prose);
   margin: 0 auto;
   padding: 3.5rem var(--gutter) 5rem;
 }
-
-/* Headline — the big change */
 .post-wrap h1 {
   font-family: var(--serif);
-  font-size: clamp(2.1rem, 4.2vw, 2.85rem);
+  font-size: clamp(1.85rem, 3.6vw, 2.4rem);
   font-weight: 700;
-  letter-spacing: -0.022em;
-  line-height: 1.08;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
   margin-bottom: 18px;
   text-wrap: balance;
   color: var(--text);
 }
-
-/* Deck / summary */
 .post-deck {
   font-family: var(--serif);
-  font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 1.4;
+  font-style: italic;
+  line-height: 1.45;
   color: var(--muted);
-  margin-bottom: 32px;
+  margin-bottom: 28px;
   text-wrap: pretty;
 }
-
-/* Byline */
 .post-byline {
   font-family: var(--sans);
   font-size: 0.9rem;
@@ -440,8 +460,6 @@ footer { border-top: 1px solid var(--rule); }
   line-height: 1.4;
   margin-bottom: 4px;
 }
-
-/* Date · tags · link */
 .post-meta {
   font-family: var(--sans);
   font-size: 0.82rem;
@@ -453,7 +471,6 @@ footer { border-top: 1px solid var(--rule); }
   padding-bottom: 28px;
   border-bottom: 1px solid var(--rule);
 }
-
 .post-meta a {
   color: var(--muted);
   text-decoration: underline;
@@ -461,7 +478,6 @@ footer { border-top: 1px solid var(--rule); }
   text-decoration-thickness: 1px;
 }
 .post-meta a:hover { color: var(--text); }
-
 .post-meta .tag {
   font-family: var(--sans);
   font-size: 0.78rem;
@@ -474,7 +490,7 @@ footer { border-top: 1px solid var(--rule); }
   background: none;
 }
 
-/* ── Post content (left-aligned prose) ── */
+/* ── Post content ── */
 .post-content {
   font-family: var(--serif);
   font-size: var(--fs-base);
@@ -507,7 +523,7 @@ footer { border-top: 1px solid var(--rule); }
   text-wrap: pretty;
 }
 
-/* Inline links: underlined, offset */
+/* Inline links */
 .post-content a,
 .ref-text a {
   color: inherit;
@@ -555,35 +571,6 @@ footer { border-top: 1px solid var(--rule); }
   width: 4rem;
 }
 
-.post-content img {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
-  display: block;
-  margin: 1.5rem auto;
-}
-.post-content figure {
-  margin: 1.5rem 0;
-  text-align: center;
-}
-.post-content figcaption {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--muted);
-  text-align: left;
-  border-top: 1px solid var(--rule);
-  padding-top: 8px;
-  margin-top: 10px;
-  font-style: normal;
-}
-.post-content figcaption .credit {
-  font-style: italic;
-  color: var(--muted);
-}
-
 .post-content code {
   font-family: var(--mono);
   font-size: .82em;
@@ -606,6 +593,140 @@ footer { border-top: 1px solid var(--rule); }
   background: none;
   border: none;
   padding: 0;
+}
+
+/* ─────────────────────────────────────────────────────
+   Media — NYT-style proportions
+     default  → wide breakout (~1.55× prose column)
+     .inline  → stays in the prose column
+     .full    → full-bleed, edge to edge
+   ───────────────────────────────────────────────────── */
+
+.post-content figure {
+  margin: 2.25rem 0;
+  padding: 0;
+  text-align: left;
+}
+
+.post-content figure img,
+.post-content figure video,
+.post-content figure iframe {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Inline width=N overrides the 100% width */
+.post-content figure img[style] {
+  width: auto;
+}
+
+.post-content > p > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  margin: 2rem 0;
+  cursor: zoom-in;
+}
+
+.post-content figure img { cursor: zoom-in; transition: opacity .15s; }
+.post-content figure img:hover { opacity: .92; }
+
+/* .wide — breaks out to the media column (default) */
+.post-content figure.wide,
+.post-content .wide {
+  width: min(var(--measure-media), calc(100vw - 2 * var(--gutter)));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-block: 2.75rem;
+}
+
+/* .full — full-bleed, edge to edge */
+.post-content figure.full,
+.post-content .full {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-block: 3rem;
+}
+
+/* .inline — opt out of the breakout, stay in the prose column */
+.post-content figure.inline {
+  width: 100%;
+  margin-left: 0;
+  transform: none;
+  margin-block: 2.25rem;
+}
+
+/* Below ~900px, collapse wide to the prose column */
+@media (max-width: 900px) {
+  .post-content figure.wide,
+  .post-content .wide {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
+}
+
+/* Caption */
+.post-content figcaption {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--muted);
+  text-align: left;
+  font-style: normal;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  max-width: 40rem;
+}
+.post-content figcaption .credit {
+  font-style: italic;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+/* Lede image above the header */
+.post-lede {
+  margin: 0 0 3rem;
+}
+.post-lede img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Video embed */
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  margin: 2.25rem 0;
+  border-radius: 0;
+  border: 0;
+}
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.post-content figure.wide .video-wrap,
+.post-content figure.full .video-wrap {
+  margin: 0;
 }
 
 /* ── Featured project block ── */
@@ -714,6 +835,12 @@ footer { border-top: 1px solid var(--rule); }
   font-variant-numeric: tabular-nums;
   min-width: 28px;
 }
+.ref-text a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.ref-text a:hover { color: var(--text); }
 .cite-link {
   font-size: .8em;
   color: var(--muted);
@@ -721,50 +848,48 @@ footer { border-top: 1px solid var(--rule); }
   vertical-align: super;
 }
 .cite-link:hover { color: var(--text); }
+/* ── Code blocks get the same breakout behavior as media ── */
 
-/* ── Image zoom ── */
-.post-content figure.img-figure {
-  display: block;
-  margin: 1.5rem auto;
-  text-align: center;
-}
-.post-content figure.img-figure img {
+/* Base: constrain to prose column, like images */
+.post-content .highlight,
+.post-content pre {
+  margin: 1.75rem 0;
   max-width: 100%;
-  height: auto;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
-  display: inline-block;
-  cursor: zoom-in;
-  transition: opacity .15s;
-}
-.post-content figure.img-figure img:hover { opacity: .85; }
-.post-content figure.img-figure figcaption {
-  font-family: var(--sans);
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--muted);
-  margin-top: 10px;
-  text-align: left;
-  border-top: 1px solid var(--rule);
-  padding-top: 8px;
-  font-style: normal;
 }
 
-/* ── Video embed ── */
-.video-wrap {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-  margin: 1.5rem 0;
-  border-radius: var(--radius);
-  border: 1px solid var(--rule);
+/* .wide — break out to the media column (default-worthy) */
+.post-content .highlight.wide,
+.post-content pre.wide {
+  width: min(var(--measure-media), calc(100vw - 2 * var(--gutter)));
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-block: 2rem;
 }
-.video-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+
+/* .full — full-bleed */
+.post-content .highlight.full,
+.post-content pre.full {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-block: 2.25rem;
+}
+
+/* .inline — opt out, stay in the prose column */
+.post-content .highlight.inline,
+.post-content pre.inline {
   width: 100%;
-  height: 100%;
-  border: none;
+  margin-left: 0;
+  transform: none;
+}
+
+/* Collapse wide back to the column on small screens */
+@media (max-width: 900px) {
+  .post-content .highlight.wide,
+  .post-content pre.wide {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
+  }
 }

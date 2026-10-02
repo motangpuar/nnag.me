@@ -1,0 +1,5 @@
+{{- $class := "wide" -}}
+{{- with .Attributes.class }}{{ $class = . }}{{ end -}}
+<div class="{{ $class }}">
+  {{- transform.Highlight .Inner .Type .Options -}}
+</div>

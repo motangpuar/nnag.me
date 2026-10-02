@@ -1,15 +1,44 @@
-{{- $width := "" -}}
+{{- $class   := "wide" -}}
+{{- $width   := "" -}}
 {{- $caption := "" -}}
-{{- $title := .Title -}}
-{{- if hasPrefix $title "width=" -}}
-  {{- $width = strings.TrimPrefix "width=" $title -}}
-{{- else -}}
-  {{- $caption = $title -}}
+{{- $credit  := "" -}}
+{{- $title   := .Title -}}
+
+{{/* Parse the title attribute.
+     Supported forms:
+       "Some caption"                            → wide + caption
+       "width=600"                                → wide + constrain width
+       "class=inline"                             → stay in the prose column
+       "class=full"                               → full-bleed
+       "class=wide; caption; credit=Photo: YM"    → combinable via ";"
+     Default class is "wide" if no class= is set.
+*/}}
+{{- if $title -}}
+  {{- $parts := split $title ";" -}}
+  {{- range $parts -}}
+    {{- $p := trim . " " -}}
+    {{- if hasPrefix $p "width=" -}}
+      {{- $width = strings.TrimPrefix "width=" $p -}}
+    {{- else if hasPrefix $p "class=" -}}
+      {{- $class = strings.TrimPrefix "class=" $p -}}
+    {{- else if hasPrefix $p "credit=" -}}
+      {{- $credit = strings.TrimPrefix "credit=" $p -}}
+    {{- else if $p -}}
+      {{- $caption = $p -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}
-<figure class="img-figure">
+
+<figure{{ with $class }} class="{{ . }}"{{ end }}>
   <img src="{{ .Destination | safeURL }}"
        alt="{{ .Text }}"
        loading="lazy"
-       {{- with $width }} style="max-width:{{ . }}px"{{ end }}>
-  {{- with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+       decoding="async"
+       {{- with $width }} style="max-width:{{ . }}px; width:100%"{{ end }}>
+  {{- if or $caption $credit -}}
+    <figcaption>
+      {{- with $caption }}{{ . }}{{ end -}}
+      {{- with $credit }} <span class="credit">{{ . }}</span>{{ end -}}
+    </figcaption>
+  {{- end -}}
 </figure>
